@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<!-- To Enable development mode -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- To enable Internationalization -->
+	<constant name="struts.custom.i18n.resources" value="global"></constant>
+	<package name="default" extends="struts-default">
+		<!-- No method defined, so default execute() -->
+		<!-- <action name="loginPage" class="com.java.action.LoginAction" method="testMethod"> -->
+		<action name="loginPage" class="com.java.action.LoginAction">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="alias" />
+			<interceptor-ref name="timer" />
+			<!-- Below listed is a Interceptor stack which contains multiple interceptors, 
+				hence all interceptors will be applied upon calling this single interceptor -->
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<result name="success">/foodQuality.jsp</result>
+			<result name="error">/error.jsp</result>
+			<!-- name = "input"" fixed whe using addFieldError() -->
+			<result name="input">/Login.jsp</result>
+		</action>
+
+		<action name="testMethod" class="com.java.action.LoginAction"
+			method="testMethod">
+			<result name="SUCCESS123">/testing.jsp</result>
+		</action>
+
+		<action name="workingMethod" class="com.java.action.LoginAction"
+			method="workingMethod">
+			<result name="SUCCESS123">/testing.jsp</result>
+		</action>
+
+	</package>
+
+	<!-- Dummy Action - No class, no result params given, output is fixed, result 
+		executed without processing in service -->
+	<package name="choise" extends="default">
+		<action name="choiseForm">
+			<!-- Wildcard mapping, any action with @choise in start will be redirected 
+				to below jsp -->
+			<result>/-success(instead of success, redirected to other input).jsp
+			</result>
+		</action>
+		<action name="choise*">
+			<!-- Wildcard mapping, any action with @choise in start will be redirected 
+				to below jsp -->
+			<result>/success{1}.jsp</result>
+		</action>
+
+	</package>
+</struts>

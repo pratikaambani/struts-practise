@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+	<field name="userID">
+		<field-validator type="requiredstring">
+			<message key="$(getText(fieldName))  Hey! Hey! Hey! Enter your user name. And remember, this
+				message is printed using validation framework" />
+		</field-validator>
+	</field>
+
+<!-- 	<validator type="xpr">
+		<param name="expression">a &gt; b</param>
+		<message>a mst be grater than b; $(expression)</message>
+	</validator>
+ -->
+</validators>        
+        
